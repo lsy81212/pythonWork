@@ -14,6 +14,7 @@ defe3 = 0
 defe5 = 0
 highestList = {'days': [i for i in range(1, 40)], 'times': [0 for i in range(1, 40)]}
 lowestList = {'days': [i for i in range(1, 40)], 'times': [0 for i in range(1, 40)]}
+mvpList = {}
 
 
 class Judge(object):
@@ -47,6 +48,7 @@ class Judge(object):
                     if ratio2 <= 0.95:
                         defe5 += 1
                     lowestList['times'][lowestDays] += 1
+                    self.addMvp(code, ratio2)
                 lock.release()
 
             if histogtam['value'][i] < 0 and histogtam['value'][i + 1] > 0:  # 绿红
@@ -106,3 +108,10 @@ class Judge(object):
 
             ratio2 = lowestClose / data['close'][len(data['close']) - 1]
             return ratio2, lowestDays  # 最大跌幅
+
+    def addMvp(self, code, ratio):
+        if len(mvpList) < 10:
+            mvpList.update({code: ratio})
+        else:
+            mvpList.pop(min(mvpList, key=mvpList.get))
+            mvpList.update({code: ratio})

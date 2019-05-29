@@ -111,6 +111,8 @@ if __name__ == '__main__':
     print("上涨幅度大于5%的几率为：", succ5 / sumCode)
     print("上涨峰值分布:", end="")
     print(highestList)
+    mvpList = judgeTrend.mvpList
+    print("上涨幅度最大的十支股票",mvpList)
     p.draw2(highestList['times'])
     print(su)
     end = time.time()
