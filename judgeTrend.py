@@ -18,7 +18,7 @@ lowestList = {'days': [i for i in range(1, 40)], 'times': [0 for i in range(1, 4
 
 class Judge(object):
 
-    def judgeTwiceCross(self, code, macdSum, dif, codeDict):
+    def judgeTwiceCross(self, code, histogtam, dif, codeDict):
 
         global sumCode
         global succ
@@ -28,11 +28,11 @@ class Judge(object):
         global defe
         global defe3
         global defe5
-        for i in range(1, len(macdSum['value']) - 3):
-            if macdSum['value'][i] > 0 and macdSum['value'][i + 1] < 0:  # 红绿
-                date1 = macdSum['date'][i]
-                date2 = macdSum['date'][i + 2]
-                date3 = macdSum['date'][i + 3]
+        for i in range(1, len(histogtam['value']) - 3):
+            if histogtam['value'][i] > 0 and histogtam['value'][i + 1] < 0:  # 红绿
+                date1 = histogtam['date'][i]
+                date2 = histogtam['date'][i + 2]
+                date3 = histogtam['date'][i + 3]
                 dif1 = dif['value'][dif['date'].index(date1)]
                 dif2 = dif['value'][dif['date'].index(date2)]
                 lock.acquire()
@@ -49,10 +49,10 @@ class Judge(object):
                     lowestList['times'][lowestDays] += 1
                 lock.release()
 
-            if macdSum['value'][i] < 0 and macdSum['value'][i + 1] > 0:  # 绿红
-                date1 = macdSum['date'][i]
-                date2 = macdSum['date'][i + 2]
-                date3 = macdSum['date'][i + 3]
+            if histogtam['value'][i] < 0 and histogtam['value'][i + 1] > 0:  # 绿红
+                date1 = histogtam['date'][i]
+                date2 = histogtam['date'][i + 2]
+                date3 = histogtam['date'][i + 3]
                 dif1 = dif['value'][dif['date'].index(date1)]
                 dif2 = dif['value'][dif['date'].index(date2)]
                 lock.acquire()

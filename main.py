@@ -57,12 +57,14 @@ def loop(codeList, k):
         e = EMA.getEM(closeDict=codeDict)
         dif = e.getDIF(codeDict)
         dea = e.getDEA(dif)
+        # lock.acquire()
         # p.draw(dif, dea)  # 画图
+        # lock.release()
         c = cM.Macd(dif=dif,dea=dea,closeDict=codeDict)
         macd = c.getMACD(dif, dea, codeDict)
-        macdSum = c.calculateMACD(macd)
+        histogtam = c.calculateMACD(macd)
         j = judgeTrend.Judge()
-        j.judgeTwiceCross(codeList[i], macdSum, dif, codeDict)
+        j.judgeTwiceCross(codeList[i], histogtam, dif, codeDict)
 
 
 if __name__ == '__main__':
